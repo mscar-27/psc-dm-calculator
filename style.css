@@ -25,6 +25,27 @@ body {
   padding: 48px 0 36px;
 }
 
+.skip-link { position: absolute; top: -60px; left: 12px; z-index: 10; padding: 8px 12px; background: white; }
+.skip-link:focus { top: 8px; }
+.site-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 4px; }
+.site-header strong { color: var(--accent); letter-spacing: .03em; }
+.language-control { display: flex; align-items: center; gap: 8px; }
+.language-control label { font-size: .9rem; }
+.language-control select { padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: white; color: var(--text); font: inherit; }
+.tabs { display: flex; gap: 4px; overflow-x: auto; border-bottom: 1px solid var(--border); margin-bottom: 18px; }
+.tab { flex: 1 0 auto; background: transparent; color: var(--muted); border-radius: 8px 8px 0 0; border-bottom: 3px solid transparent; text-align: center; }
+.tab:hover { background: var(--soft); color: var(--accent-dark); }
+.tab[aria-selected="true"] { color: var(--accent-dark); background: white; border-bottom-color: var(--accent); }
+[hidden] { display: none !important; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, [role="tabpanel"]:focus-visible { outline: 3px solid #e39c29; outline-offset: 3px; }
+.info-button { position: relative; display: inline-grid; place-items: center; vertical-align: middle; width: 19px; height: 19px; padding: 0; margin-left: 8px; border-radius: 50%; background: var(--soft); color: var(--accent-dark); border: 1px solid var(--accent); font-size: .75rem; font-weight: 800; }
+.info-button:hover, .info-button:focus-visible { background: var(--accent); color: white; }
+.tooltip { display: none; position: absolute; z-index: 4; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); width: min(280px, 75vw); padding: 10px 12px; border-radius: 8px; background: #17212b; color: white; box-shadow: 0 5px 16px #0002; font-size: .85rem; font-weight: 400; line-height: 1.4; text-align: left; }
+.info-button:hover .tooltip, .info-button:focus-visible .tooltip { display: block; }
+fieldset, .field { min-width: 0; }
+footer .credit { display: flex; align-items: center; justify-content: center; gap: 8px; }
+footer .credit a { display: inline-flex; align-items: center; }
+
 .hero { padding: 12px 4px 24px; }
 
 .eyebrow {
@@ -44,7 +65,7 @@ h1 {
 }
 
 .subtitle {
-  max-width: 720px;
+  width: 100%;
   margin: 18px 0 0;
   color: var(--muted);
   font-size: 1.1rem;
@@ -125,6 +146,7 @@ button.secondary {
   display: flex;
   gap: 10px;
   margin-top: 28px;
+  justify-content: flex-end;
 }
 
 .result {
@@ -173,9 +195,10 @@ footer {
 
   .card { padding: 22px 18px; }
 
-  .button-row { flex-direction: column; }
-
-  button { width: 100%; }
+  .tabs .tab { padding: 10px 12px; font-size: .9rem; }
+  .button-row { flex-direction: row; }
+  .button-row button { flex: 0 1 auto; }
+  .tooltip { left: auto; right: -16px; transform: none; }
 }
 
 
@@ -196,3 +219,6 @@ a:hover {
 .resource-list li {
   margin: 6px 0;
 }
+
+.reference-list { margin: 10px 0 22px; padding-left: 1.4rem; }
+.reference-list li { margin: 0 0 14px; overflow-wrap: anywhere; }

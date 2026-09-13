@@ -4,170 +4,180 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="PSC-DM clinical prediction model for distinguishing primary from secondary sclerosing cholangitis." />
-  <title>PSC-DM Calculator</title>
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="PSC-DM | Primary Sclerosing Cholangitis Calculator" />
+  <meta property="og:description" content="Estimate the probability of primary sclerosing cholangitis with the PSC-DM clinical model." />
+  <meta name="theme-color" content="#1e5a73" />
+  <title>PSC-DM | Primary Sclerosing Cholangitis Calculator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
   <main class="page-shell">
+    <header class="site-header"><strong data-i18n="eyebrow">Clinical prediction model</strong><div class="language-control"><label for="language" data-i18n="languageLabel">Language</label><select id="language" aria-label="Language / Lingua"><option value="en">English</option><option value="it">Italiano</option></select></div></header>
     <section class="hero">
       <div>
-        <p class="eyebrow">Clinical prediction model</p>
         <h1>PSC-DM</h1>
-        <p class="subtitle">
+        <p class="subtitle" data-i18n="subtitle">
           A clinical calculator to estimate the probability of primary sclerosing cholangitis (PSC)
           in adults with sclerosing cholangitis.
         </p>
       </div>
     </section>
 
-    <section class="card">
-      <h2>Calculate PSC probability</h2>
-      <p class="intro">
+    <nav class="tabs" role="tablist" aria-label="PSC-DM sections" data-i18n-aria="tabsLabel"><button id="tab-calculator" class="tab" type="button" role="tab" aria-selected="true" aria-controls="panel-calculator" tabindex="0" data-i18n="tabCalculator">Calculator</button><button id="tab-information" class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-information" tabindex="-1" data-i18n="tabInformation">Informations</button><button id="tab-references" class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-references" tabindex="-1" data-i18n="tabReferences">References</button></nav>
+    <section id="panel-calculator" role="tabpanel" aria-labelledby="tab-calculator" tabindex="0"><div class="card">
+      <h2 data-i18n="calculateTitle">Calculate PSC probability</h2>
+      <p class="intro" data-i18n="intro">
         Enter the clinical features available at diagnosis or first specialist assessment.
       </p>
 
       <form id="pscForm">
         <div class="field">
-          <label for="age">Age at diagnosis</label>
+          <label for="age" data-i18n="age">Age at diagnosis</label><button type="button" class="info-button" data-info="age" aria-label="About age at diagnosis">i<span class="tooltip" role="tooltip" data-i18n="ageHelp">Age in completed years when sclerosing cholangitis was diagnosed.</span></button>
           <div class="input-with-unit">
             <input id="age" name="age" type="number" min="18" max="100" step="1" required />
-            <span>years</span>
+            <span data-i18n="years">years</span>
           </div>
         </div>
 
         <fieldset>
-          <legend>Inflammatory bowel disease (IBD)</legend>
+          <legend><span data-i18n="ibd">Inflammatory bowel disease (IBD)</span><button type="button" class="info-button" data-info="ibd" aria-label="About inflammatory bowel disease">i<span class="tooltip" role="tooltip" data-i18n="ibdHelp">Select Yes if the patient has inflammatory bowel disease, including ulcerative colitis or Crohn’s disease.</span></button></legend>
           <div class="radio-row">
-            <label><input type="radio" name="ibd" value="1" required /> Yes</label>
-            <label><input type="radio" name="ibd" value="0" required /> No</label>
+            <label><input type="radio" name="ibd" value="1" required /> <span data-i18n="yes">Yes</span></label>
+            <label><input type="radio" name="ibd" value="0" required /> <span data-i18n="no">No</span></label>
           </div>
         </fieldset>
 
         <fieldset>
-          <legend>Previous hepato-pancreato-biliary surgery</legend>
+          <legend><span data-i18n="surgery">Previous hepato-pancreato-biliary surgery</span><button type="button" class="info-button" data-info="surgery" aria-label="About previous surgery">i<span class="tooltip" role="tooltip" data-i18n="surgeryHelp">Select Yes for surgery involving the liver, pancreas, or bile ducts before assessment.</span></button></legend>
           <div class="radio-row">
-            <label><input type="radio" name="surgery" value="1" required /> Yes</label>
-            <label><input type="radio" name="surgery" value="0" required /> No</label>
+            <label><input type="radio" name="surgery" value="1" required /> <span data-i18n="yes">Yes</span></label>
+            <label><input type="radio" name="surgery" value="0" required /> <span data-i18n="no">No</span></label>
           </div>
         </fieldset>
 
         <fieldset>
-          <legend>Other autoimmune comorbidities</legend>
+          <legend><span data-i18n="autoimmune">Other autoimmune comorbidities</span><button type="button" class="info-button" data-info="autoimmune" aria-label="About other autoimmune conditions">i<span class="tooltip" role="tooltip" data-i18n="autoimmuneHelp">Select Yes for a diagnosed autoimmune condition other than inflammatory bowel disease.</span></button></legend>
           <div class="radio-row">
-            <label><input type="radio" name="autoimmune" value="1" required /> Yes</label>
-            <label><input type="radio" name="autoimmune" value="0" required /> No</label>
+            <label><input type="radio" name="autoimmune" value="1" required /> <span data-i18n="yes">Yes</span></label>
+            <label><input type="radio" name="autoimmune" value="0" required /> <span data-i18n="no">No</span></label>
           </div>
         </fieldset>
 
         <fieldset>
-          <legend>Family history of autoimmune disease</legend>
+          <legend><span data-i18n="family">Family history of autoimmune disease</span><button type="button" class="info-button" data-info="family" aria-label="About family history">i<span class="tooltip" role="tooltip" data-i18n="familyHelp">Select Yes if an autoimmune disease is known in the patient's family.</span></button></legend>
           <div class="radio-row">
-            <label><input type="radio" name="family" value="1" required /> Yes</label>
-            <label><input type="radio" name="family" value="0" required /> No</label>
+            <label><input type="radio" name="family" value="1" required /> <span data-i18n="yes">Yes</span></label>
+            <label><input type="radio" name="family" value="0" required /> <span data-i18n="no">No</span></label>
           </div>
         </fieldset>
 
         <fieldset>
-          <legend>Pancreatic abnormalities on MRI or CT</legend>
+          <legend><span data-i18n="pancreas">Pancreatic abnormalities on MRI or CT</span><button type="button" class="info-button" data-info="pancreas" aria-label="About pancreatic imaging">i<span class="tooltip" role="tooltip" data-i18n="pancreasHelp">Select Yes if MRI or CT reported a pancreatic abnormality.</span></button></legend>
           <div class="radio-row">
-            <label><input type="radio" name="pancreas" value="1" required /> Yes</label>
-            <label><input type="radio" name="pancreas" value="0" required /> No</label>
+            <label><input type="radio" name="pancreas" value="1" required /> <span data-i18n="yes">Yes</span></label>
+            <label><input type="radio" name="pancreas" value="0" required /> <span data-i18n="no">No</span></label>
           </div>
         </fieldset>
 
         <div class="button-row">
-          <button type="submit">Calculate</button>
-          <button type="button" class="secondary" id="resetBtn">Reset</button>
+          <button type="button" class="secondary" id="resetBtn" data-i18n="reset">Reset</button>
+          <button type="submit" data-i18n="calculate">Calculate</button>
         </div>
       </form>
 
       <div id="result" class="result hidden" aria-live="polite">
-        <p class="result-label">Predicted probability of PSC</p>
+        <p class="result-label" data-i18n="resultLabel">Predicted probability of PSC</p>
         <p class="result-value"><span id="probability">—</span></p>
         <p id="interpretation" class="result-note"></p>
       </div>
-    </section>
+    </div></section>
 
+    <section id="panel-information" role="tabpanel" aria-labelledby="tab-information" tabindex="0" hidden>
     <section class="card compact">
-      <h2>About PSC-DM</h2>
-      <p>
+      <h2 data-i18n="aboutTitle">About PSC-DM</h2>
+      <p data-i18n="aboutText">
         PSC-DM combines six routinely available clinical variables:
         age at diagnosis, IBD, previous hepato-pancreato-biliary surgery,
         other autoimmune comorbidities, family history of autoimmune disease,
         and pancreatic abnormalities.
       </p>
-      <p class="equation">
+      <p class="equation" data-i18n="equation">
         PSC-DM = 6.6417 − 0.1212×Age + 4.9673×IBD − 2.5868×Surgery
         + 2.2197×Autoimmunity + 2.3572×Family history − 2.5001×Pancreas
       </p>
-      <p>
+      <p data-i18n="probabilityEquation">
         Probability of PSC = exp(PSC-DM) / [1 + exp(PSC-DM)]
       </p>
     </section>
 
     <section class="card compact">
-      <h2>Clinical use</h2>
-      <p>
+      <h2 data-i18n="clinicalTitle">Clinical use</h2>
+      <p data-i18n="clinicalText">
         PSC-DM is provided for informational purposes only and should not be used as a standalone tool
         for diagnosis or treatment decisions. PSC-DM is intended to support, not replace, clinical judgement.
         Atypical or discordant presentations should prompt specialist review and appropriate investigation
         for secondary causes of sclerosing cholangitis.
       </p>
-      <p>
+      <p data-i18n="privacy">
         The calculator performs all calculations locally in your browser. No patient information is
         transmitted or stored by this website.
       </p>
     </section>
 
     <section class="card compact">
-      <h2>Patient information</h2>
-      <p>
+      <h2 data-i18n="patientTitle">Patient information</h2>
+      <p data-i18n="patientText">
         For patients and relatives of those with PSC, further information is available from:
       </p>
       <ul class="resource-list">
-        <li><a href="https://www.pscsupport.org.uk/" target="_blank" rel="noopener noreferrer">PSC Support</a> (English)</li>
-        <li><a href="https://pscpartners.org/" target="_blank" rel="noopener noreferrer">PSC Partners Seeking a Cure</a> (English)</li>
-        <li><a href="https://rare-liver.eu/" target="_blank" rel="noopener noreferrer">ERN RARE-LIVER</a> (English)</li>
-        <li><a href="https://www.amaf.it/" target="_blank" rel="noopener noreferrer">AMAF</a> (Italian)</li>
+        <li><a href="https://www.pscsupport.org.uk/" target="_blank" rel="noopener noreferrer">PSC Support</a> (<span data-i18n="english">English</span>)</li>
+        <li><a href="https://pscpartners.org/" target="_blank" rel="noopener noreferrer">PSC Partners Seeking a Cure</a> (<span data-i18n="english">English</span>)</li>
+        <li><a href="https://rare-liver.eu/" target="_blank" rel="noopener noreferrer">ERN RARE-LIVER</a> (<span data-i18n="english">English</span>)</li>
+        <li><a href="https://www.amaf.it/" target="_blank" rel="noopener noreferrer">AMAF</a> (<span data-i18n="italian">Italian</span>)</li>
       </ul>
     </section>
+    </section>
 
-    <section class="card compact">
-      <h2>References</h2>
-      <p>
+    <section id="panel-references" role="tabpanel" aria-labelledby="tab-references" tabindex="0" hidden><section class="card compact">
+      <h2 data-i18n="referencesTitle">References</h2>
+      <p data-i18n="derivedIn">
         PSC-DM uses the equation derived in:
       </p>
-      <p>
+      <ul class="reference-list"><li>
         Scaravaglio M, et al. <em>PSC-DM: a validated clinical diagnostic model for distinguishing
-        primary from secondary sclerosing cholangitis.</em> Final journal citation to be added when available.
-      </p>
-      <p>
+        primary from secondary sclerosing cholangitis.</em> <span data-i18n="citationPending">Final journal citation to be added when available.</span> <a href="https://www.researchgate.net/publication/391520768_THU-325-YI_The_PSC-DM_development_and_validation_of_a_clinical_diagnostic_model_to_aid_the_diagnosis_of_primary_vs_secondary_sclerosing_cholangitis" target="_blank" rel="noopener noreferrer">ResearchGate</a>.
+      </li></ul>
+      <p data-i18n="referAlso">
         Please refer also to:
       </p>
-      <p>
+      <ul class="reference-list"><li>
         European Association for the Study of the Liver.
         <em>EASL Clinical Practice Guidelines on sclerosing cholangitis.</em>
         J Hepatol. 2022;77(3):761–806.
         <a href="https://doi.org/10.1016/j.jhep.2022.05.011" target="_blank" rel="noopener noreferrer">
           doi:10.1016/j.jhep.2022.05.011
-        </a>.
-      </p>
-      <p>
+        </a>. <a href="https://www.researchgate.net/publication/361450278_EASL_Clinical_Practice_Guidelines_on_Sclerosing_Cholangitis" target="_blank" rel="noopener noreferrer">ResearchGate</a>.
+      </li><li>
         Bowlus CL, Arrivé L, Bergquist A, Deneau M, Forman L, Ilyas SI, Lunsford KE, Martinez M,
         Sapisochin G, Shroff R, Tabibian JH, Assis DN.
         <em>AASLD practice guidance on primary sclerosing cholangitis and cholangiocarcinoma.</em>
         Hepatology. 2023;77(2):659–702.
         <a href="https://doi.org/10.1002/hep.32771" target="_blank" rel="noopener noreferrer">
           doi:10.1002/hep.32771
-        </a>.
-      </p>
-    </section>
+        </a>. <a href="https://www.researchgate.net/publication/363426619_AASLD_Practice_Guidance_on_Primary_Sclerosing_Cholangitis_and_Cholangiocarcinoma" target="_blank" rel="noopener noreferrer">ResearchGate</a>.
+      </li></ul>
+    </section></section>
 
     <footer>
-      <p>For research and clinical decision-support purposes. Not a substitute for specialist assessment.</p>
+      <p data-i18n="disclaimer">For research and clinical decision-support purposes. Not a substitute for specialist assessment.</p>
+      <p class="credit"><span data-i18n="credit">Created by Miki Scaravaglio</span> <a href="https://www.linkedin.com/in/miki-scaravaglio-385b10195/" target="_blank" rel="noopener noreferrer" aria-label="Miki Scaravaglio on LinkedIn"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52C22 2.68 21.31 2 20.45 2ZM7.93 18.75H4.98V9.2h2.95v9.55ZM6.46 7.9a1.71 1.71 0 1 1 0-3.42 1.71 1.71 0 0 1 0 3.42Zm12.29 10.85H15.8V14.1c0-1.11-.02-2.54-1.55-2.54-1.55 0-1.79 1.21-1.79 2.46v4.73H9.51V9.2h2.83v1.3h.04c.39-.74 1.36-1.52 2.79-1.52 2.98 0 3.58 1.96 3.58 4.51v5.26Z"/></svg></a></p>
     </footer>
   </main>
 
   <script src="script.js"></script>
 </body>
 </html>
+
