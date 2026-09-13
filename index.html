@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PSC-DM clinical prediction model for distinguishing primary from secondary sclerosing cholangitis." />
+  <title>PSC-DM Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Clinical prediction model</p>
+        <h1>PSC-DM</h1>
+        <p class="subtitle">
+          A clinical calculator to estimate the probability of primary sclerosing cholangitis (PSC)
+          in adults with sclerosing cholangitis.
+        </p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Calculate PSC probability</h2>
+      <p class="intro">
+        Enter the clinical features available at diagnosis or first specialist assessment.
+      </p>
+
+      <form id="pscForm">
+        <div class="field">
+          <label for="age">Age at diagnosis</label>
+          <div class="input-with-unit">
+            <input id="age" name="age" type="number" min="18" max="100" step="1" required />
+            <span>years</span>
+          </div>
+        </div>
+
+        <fieldset>
+          <legend>Inflammatory bowel disease (IBD)</legend>
+          <div class="radio-row">
+            <label><input type="radio" name="ibd" value="1" required /> Yes</label>
+            <label><input type="radio" name="ibd" value="0" required /> No</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Previous hepato-pancreato-biliary surgery</legend>
+          <div class="radio-row">
+            <label><input type="radio" name="surgery" value="1" required /> Yes</label>
+            <label><input type="radio" name="surgery" value="0" required /> No</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Other autoimmune comorbidities</legend>
+          <div class="radio-row">
+            <label><input type="radio" name="autoimmune" value="1" required /> Yes</label>
+            <label><input type="radio" name="autoimmune" value="0" required /> No</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Family history of autoimmune disease</legend>
+          <div class="radio-row">
+            <label><input type="radio" name="family" value="1" required /> Yes</label>
+            <label><input type="radio" name="family" value="0" required /> No</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Pancreatic abnormalities on MRI or CT</legend>
+          <div class="radio-row">
+            <label><input type="radio" name="pancreas" value="1" required /> Yes</label>
+            <label><input type="radio" name="pancreas" value="0" required /> No</label>
+          </div>
+        </fieldset>
+
+        <div class="button-row">
+          <button type="submit">Calculate</button>
+          <button type="button" class="secondary" id="resetBtn">Reset</button>
+        </div>
+      </form>
+
+      <div id="result" class="result hidden" aria-live="polite">
+        <p class="result-label">Predicted probability of PSC</p>
+        <p class="result-value"><span id="probability">—</span></p>
+        <p id="interpretation" class="result-note"></p>
+      </div>
+    </section>
+
+    <section class="card compact">
+      <h2>About PSC-DM</h2>
+      <p>
+        PSC-DM combines six routinely available clinical variables:
+        age at diagnosis, IBD, previous hepato-pancreato-biliary surgery,
+        other autoimmune comorbidities, family history of autoimmune disease,
+        and pancreatic abnormalities.
+      </p>
+      <p class="equation">
+        PSC-DM = 6.6417 − 0.1212×Age + 4.9673×IBD − 2.5868×Surgery
+        + 2.2197×Autoimmunity + 2.3572×Family history − 2.5001×Pancreas
+      </p>
+      <p>
+        Probability of PSC = exp(PSC-DM) / [1 + exp(PSC-DM)]
+      </p>
+    </section>
+
+    <section class="card compact">
+      <h2>Clinical use</h2>
+      <p>
+        PSC-DM is provided for informational purposes only and should not be used as a standalone tool
+        for diagnosis or treatment decisions. PSC-DM is intended to support, not replace, clinical judgement.
+        Atypical or discordant presentations should prompt specialist review and appropriate investigation
+        for secondary causes of sclerosing cholangitis.
+      </p>
+      <p>
+        The calculator performs all calculations locally in your browser. No patient information is
+        transmitted or stored by this website.
+      </p>
+    </section>
+
+    <section class="card compact">
+      <h2>Patient information</h2>
+      <p>
+        For patients and relatives of those with PSC, further information is available from:
+      </p>
+      <ul class="resource-list">
+        <li><a href="https://www.pscsupport.org.uk/" target="_blank" rel="noopener noreferrer">PSC Support</a> (English)</li>
+        <li><a href="https://pscpartners.org/" target="_blank" rel="noopener noreferrer">PSC Partners Seeking a Cure</a> (English)</li>
+        <li><a href="https://rare-liver.eu/" target="_blank" rel="noopener noreferrer">ERN RARE-LIVER</a> (English)</li>
+        <li><a href="https://www.amaf.it/" target="_blank" rel="noopener noreferrer">AMAF</a> (Italian)</li>
+      </ul>
+    </section>
+
+    <section class="card compact">
+      <h2>References</h2>
+      <p>
+        PSC-DM uses the equation derived in:
+      </p>
+      <p>
+        Scaravaglio M, et al. <em>PSC-DM: a validated clinical diagnostic model for distinguishing
+        primary from secondary sclerosing cholangitis.</em> Final journal citation to be added when available.
+      </p>
+      <p>
+        Please refer also to:
+      </p>
+      <p>
+        European Association for the Study of the Liver.
+        <em>EASL Clinical Practice Guidelines on sclerosing cholangitis.</em>
+        J Hepatol. 2022;77(3):761–806.
+        <a href="https://doi.org/10.1016/j.jhep.2022.05.011" target="_blank" rel="noopener noreferrer">
+          doi:10.1016/j.jhep.2022.05.011
+        </a>.
+      </p>
+      <p>
+        Bowlus CL, Arrivé L, Bergquist A, Deneau M, Forman L, Ilyas SI, Lunsford KE, Martinez M,
+        Sapisochin G, Shroff R, Tabibian JH, Assis DN.
+        <em>AASLD practice guidance on primary sclerosing cholangitis and cholangiocarcinoma.</em>
+        Hepatology. 2023;77(2):659–702.
+        <a href="https://doi.org/10.1002/hep.32771" target="_blank" rel="noopener noreferrer">
+          doi:10.1002/hep.32771
+        </a>.
+      </p>
+    </section>
+
+    <footer>
+      <p>For research and clinical decision-support purposes. Not a substitute for specialist assessment.</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
